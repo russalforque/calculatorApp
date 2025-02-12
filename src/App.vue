@@ -21,8 +21,8 @@
 
       <!--Menu Modal-->
       <transition name="slide">
-      <div v-if="showMenu" @click.self="toggleMenu" class="fixed inset-0 flex flex-col h-screen">
-        <div class="bg-[#353535] shadow-xl p-4 w-3/4 h-full rounded-r-lg">
+      <div v-if="showMenu" @click.self="toggleMenu" class="fixed inset-0 flex flex-col h-screen mt-[30px]">
+        <div class="bg-[#353535] shadow-xl p-4 w-3/4 h-[33rem] rounded-r-lg">
           <button type="button" 
                   @click="toggleMenu" 
                   class="text-white bg-[#1C1C1C] hover:bg-[#2b2b2b] focus:outline-none focus:ring-1 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
@@ -42,9 +42,9 @@
     </transition>
       
       <!--History Modal-->
-      <Transition name="fadeDown">
-        <div v-if="showHistory" @click.self="toggleHistory" class="fixed inset-0 flex bg-[transparent]">
-        <div class="bg-gray-800 backdrop:blur-md p-4 rounded-lg shadow-xl w-full min-h-40 h-auto max-h-[35vh] overflow-y-auto">
+      <Transition name="slideLeft">
+        <div v-if="showHistory" @click.self="toggleHistory" class="fixed inset-0 flex bg-[transparent] mt-8">
+        <div class="bg-[#353535] backdrop:blur-md p-4 rounded-b-lg shadow-xl w-full min-h-40 h-auto max-h-[35vh] overflow-y-auto">
           <div class="flex justify-between items-center">
             <h2 class="text-lg text-white font-semibold">History</h2>
           </div>
@@ -62,12 +62,12 @@
 
       <!--Currency Converter Modal-->
       <Transition name="slide">
-        <div v-if="showCurrencyConverter" class="fixed inset-0 flex items-center justify-center h-screen">
-       <div class="bg-[#1C1C1C] p-4 rounded-2xl shadow-xl w-full h-full">
+        <div v-if="showCurrencyConverter" class="fixed inset-0 flex items-start justify-center h-screen mt-10">
+       <div class="bg-[#1c1c1c] p-4  shadow-xl w-full h-[32rem]">
         <div class="flex justify-between items-center">
           <button type="button" 
                   @click="toggleCurrencyConverter" 
-                  class="text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                  class="text-white bg-[#353535] hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                   Back
             </button>        
           </div>
@@ -95,7 +95,7 @@
           
             <button 
               @click="convertCurrency" 
-              class="w-full mt-3 bg-gray-600 text-white p-2 rounded-lg hover:bg-gray-800">
+              class="w-full mt-3 bg-[#353535] text-white p-2 rounded-lg hover:bg-gray-800">
               Convert
             </button>
 
@@ -116,7 +116,7 @@
 
       <div class="grid grid-cols-4 gap-2">
         <button 
-          class="text-white bg-[#353535] hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-900 font-medium rounded-full shadow-lg text-sm px-5 py-2.5 me-0.5 mb-1" 
+          class="text-white bg-[#353535] hover:bg-[#3d3d3d] focus:outline-none focus:ring-4 focus:ring-gray-900 font-medium rounded-full shadow-lg text-sm px-5 py-2.5 me-0.5 mb-1" 
           v-for="(button, index) in buttons" 
           :key="index" :class="button.class" 
           @click="button.action">
@@ -186,7 +186,6 @@ export default {
   },
 
   methods: {
-
     toggleCurrencyConverter() {
     this.showCurrencyConverter = !this.showCurrencyConverter;
     this.showMenu = false;
@@ -269,8 +268,12 @@ export default {
 #app {
   font-family: "Poppins", serif;
 }
+
 .minus, .plus, .divide, .multiply {
   background-color: #FF9500;
+}
+.minus:hover, .plus:hover, .divide:hover, .multiply:hover {
+  background-color: #CC7700; /* Darker shade on hover */
 }
 .slide-enter-active, .slide-leave-active {
   transition: transform 0.4s ease-out, opacity 0.3s ease-out;
@@ -279,11 +282,12 @@ export default {
   transform: translateX(-100%);
   opacity: 0;
 }
-.fadeDown-enter-active, .fadeDown-leave-active {
+.slideLeft-enter-active, .slideLeft-leave-active {
   transition: transform 0.4s ease-out, opacity 0.3s ease-out;
 }
-.fadeDown-enter-from, .fadeDown-leave-to {
-  transform: translateY(-50%);
+.slideLeft-enter-from, .slideLeft-leave-to {
+  transform: translateX(100%);
   opacity: 0;
 }
+
 </style>

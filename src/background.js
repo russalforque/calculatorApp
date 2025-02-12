@@ -5,6 +5,7 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
+
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
@@ -14,21 +15,26 @@ async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
     width: 430,
-    height: 500,
+    height: 650,
     minWidth: 350,
     maxWidth: 500,
     minHeight: 528,
-    hasShadow: true,
     frame: false,
+    titleBarStyle: 'hidden',
+    trafficLightPosition: { x: 10, y: 10 },
+    hasShadow: true,
     transparent: true,
     webPreferences: {
       
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       devTools: false,
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
-    }
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+
+    ...(process.platform !== 'darwin' && { titleBarOverlay: true })
+
   })
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {

@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    font-family: "Poppins", serif;
+}
+
+.titlebar {
+  height: 30px;
+  background: #f7f7f7;
+  color: black;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  font-size: 12px;
+  user-select: none;
+  -webkit-app-region: drag;
+}
+
+
+
