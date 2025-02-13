@@ -1,10 +1,10 @@
 <template>
-  <div id="app" class="bg-[#1C1C1C] w-100 p-4 border-2xl border-[#0000] shadow-[-3px_1px_55px_0px_rgba(255,_255,_255,_0.05)]">
+  <div id="app" class="bg-[#1C1C1C] w-100 p-1.5 border-2xl border-[#0000] shadow-[-3px_1px_55px_0px_rgba(255,_255,_255,_0.05)]">
       <div class="flex">
         <div class="basis-64">
           <button type="button" 
                   @click="toggleMenu" 
-                  class="text-white bg-[#353535] hover:bg-[#1C1C1C] focus:outline-none focus:ring-1 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                  class="text-white bg-[#1c1c1c] hover:bg-[#353535] focus:outline-none focus:ring-1 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
             <i class="fa-solid fa-bars"></i>
           </button>
         </div>
@@ -12,7 +12,7 @@
           <div class="basis-64 mb-4 text-end">
             <button type="button" 
                   @click="toggleHistory" 
-                  class="text-white bg-[#353535] hover:bg-[#1C1C1C] focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                  class="text-white bg-[#1c1c1c] hover:bg-[#353535] focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                   <i class="fa-solid fa-clock-rotate-left"></i>
             </button>
         </div>
@@ -22,24 +22,26 @@
       <!--Menu Modal-->
       <transition name="slide">
       <div v-if="showMenu" @click.self="toggleMenu" class="fixed inset-0 flex flex-col h-screen mt-[30px]">
-        <div class="bg-[#353535] shadow-xl p-4 w-3/4 h-[33rem] rounded-r-lg">
+        <div class="bg-[#353535] shadow-xl p-4 w-2/3 h-[31.7rem] rounded-r-lg">
           <button type="button" 
                   @click="toggleMenu" 
-                  class="text-white bg-[#1C1C1C] hover:bg-[#2b2b2b] focus:outline-none focus:ring-1 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                  class="text-white bg-[#353535] hover:bg-[#2b2b2b] focus:outline-none focus:ring-1 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
             <i class="fa-solid fa-bars"></i>
           </button>
           <div class="flex flex-col text-center">
-            <h2 class="text-base text-start text-white">Converter</h2>
-            <button type="button" 
-                    @click="toggleCurrencyConverter" 
-                    class="text-white bg-[#1C1C1C] hover:bg-[#2b2b2b] focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 mt-5">
-              <i class="fa-solid fa-hand-holding-dollar mr-2 text-sm"></i>
-              currency
+            <h2 class="text-[13px] text-start text-[#f7f7f7] ml-2">Converter</h2>
+            <router-link to="/currency-converter">
+              <button type="button" 
+                  class="text-white text-start bg-[#1c1c1c] hover:bg-[#3e3e3e] focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm mt-3 px-5 py-2.5 w-full me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                  <i class="fa-solid fa-dollar-sign mr-4"></i>
+                  Currency
             </button>
+            </router-link>
           </div>
         </div>
       </div>
     </transition>
+
       
       <!--History Modal-->
       <Transition name="slideLeft">
@@ -60,53 +62,6 @@
       </div>
       </Transition>
 
-      <!--Currency Converter Modal-->
-      <Transition name="slide">
-        <div v-if="showCurrencyConverter" class="fixed inset-0 flex items-start justify-center h-screen mt-10">
-       <div class="bg-[#1c1c1c] p-4  shadow-xl w-full h-[32rem]">
-        <div class="flex justify-between items-center">
-          <button type="button" 
-                  @click="toggleCurrencyConverter" 
-                  class="text-white bg-[#353535] hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                  Back
-            </button>        
-          </div>
-    
-        <div class="mt-30 p-10">
-          <input 
-            v-model="amount" 
-            type="number" 
-            placeholder="Enter amount" 
-            class="w-full p-2 border-gray-700 rounded-lg text-dark mt-10">
-
-          <div class="flex flex-col justify-between mt-3">
-            <select v-model="fromCurrency" class="p-2 border rounded-lg bg-white border-white w-ful mb-3">
-              <option v-for="(rate, currency) in exchangeRates" :key="currency" :value="currency">
-                {{ currency }}
-              </option>
-            </select>
-            <span class="text-center text-white mb-2 mt-2 animate-bounce ..."><i class="fa-solid fa-arrow-down-long"></i></span>
-             <select v-model="toCurrency" class="p-2 border bg-white rounded-lg full">
-                <option v-for="(rate, currency) in exchangeRates" :key="currency" :value="currency">
-                  {{ currency }}
-                 </option>
-              </select>
-          </div>
-          
-            <button 
-              @click="convertCurrency" 
-              class="w-full mt-3 bg-[#353535] text-white p-2 rounded-lg hover:bg-gray-800">
-              Convert
-            </button>
-
-            <p v-if="convertedAmount !== null" class="mt-3 text-lg text-white text-center">
-            Converted Amount: <strong>{{ convertedAmount }}</strong> {{ toCurrency }}
-          </p>
-       </div>
-     </div>
-    </div>
-      </Transition>
-
       <div class="">
         <input v-model="displayValue"
                type="text" 
@@ -116,7 +71,7 @@
 
       <div class="grid grid-cols-4 gap-2">
         <button 
-          class="text-white bg-[#353535] hover:bg-[#3d3d3d] focus:outline-none focus:ring-4 focus:ring-gray-900 font-medium rounded-full shadow-lg text-sm px-5 py-2.5 me-0.5 mb-1" 
+          class="text-white bg-[#353535] hover:bg-[#3d3d3d] focus:outline-none focus:ring-4 focus:ring-gray-900 font-medium rounded-lg shadow-lg text-sm px-5 py-2.5 me-0.5 mb-1" 
           v-for="(button, index) in buttons" 
           :key="index" :class="button.class" 
           @click="button.action">
@@ -133,8 +88,10 @@
           </span>
         </button>
       </div>
-    </div>
-
+  </div>
+  <main>
+    <router-view></router-view>
+  </main>
 </template>
 
 <script>
@@ -177,9 +134,9 @@ export default {
         { value: 2, action: () => this.appendNumber(2) },
         { value: 3, action: () => this.appendNumber(3) },
         { class: 'plus', action: () => this.appendOperator('+') },
+        { value: '%', class: 'symbols', action: this.percent },
         { value: 0, class: 'zero', action: () => this.appendNumber(0) },
         { value: '.', class: 'dot', action: () => this.appendOperator('.') },
-        { value: '%', class: 'symbols', action: this.percent },
         { class: 'result', action: this.calculateResult },
       ]
     };
@@ -256,7 +213,7 @@ export default {
         }
       
       } catch (e) {
-        this.displayValue = "";
+        this.displayValue = "0";
       }
     },
   },

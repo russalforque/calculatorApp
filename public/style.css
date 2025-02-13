@@ -5,8 +5,8 @@ body {
 
 .titlebar {
   height: 30px;
-  background: #f7f7f7;
-  color: black;
+  background: #131313;
+  color: #f7f7f7;
   display: flex;
   justify-content: start;
   align-items: start;
