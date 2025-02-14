@@ -18,16 +18,13 @@ async function createWindow() {
     height: 650,
     minWidth: 350,
     maxWidth: 500,
-    minHeight: 528,
+    minHeight: 550,
     frame: false,
     titleBarStyle: 'hidden',
     trafficLightPosition: { x: 10, y: 10 },
     hasShadow: true,
     transparent: true,
     webPreferences: {
-      
-      // Use pluginOptions.nodeIntegration, leave this alone
-      // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       devTools: false,
       nodeIntegration: true,
       contextIsolation: false,
