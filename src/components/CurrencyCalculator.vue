@@ -1,16 +1,15 @@
 <template>
-    <div class="flex flex-col items-center justify-center h-[31.7rem] text-white bg-[#1c1c1c]">
+    <div class="flex flex-col mx-auto items-center justify-center h-[31.7rem] text-white bg-[#1c1c1c]">
         <h2 class="text-lg font-semibold mb-3">Currency Converter</h2>
-  
-        <div class="mb-3">
-          <label class="block text-sm">Amount:</label>
-          <input
-            type="number"
-            v-model="amount"
-            placeholder="Enter amount"
-            class="w-full p-2 rounded-md bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
+          <div class="mb-3">
+            <label class="block text-sm">Amount:</label>
+            <input
+              type="number"
+              v-model="amount"
+              placeholder="Enter amount"
+              class="w-full p-2 rounded-md bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
   
         <div class="grid grid-cols-2 gap-3">
           <div>
